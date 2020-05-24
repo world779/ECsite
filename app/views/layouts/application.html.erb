@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NaganoCake</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>NaganoCake</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <header>
+    <nav class="navbar navbar-light bg-inverse" style="background-color:#696969;">
+      <div class="container-fluid">
+        <div class="navbar-brand" style="margin:20px 0px 10px 0px;">
+          <div style="background-color:white; text-decoration: none; padding:15px 70px"><%= link_to 'LOGO', root_path%></div>
+        </div>
+        <ul class="nav navbar-right navbar-nav" style="margin:20px 0px 10px 0px;">
+          <% if end_user_signed_in? %>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to 'マイページ', current_end_user %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to "商品一覧" %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to 'カート' %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to " ログアウト", destroy_end_user_session_path, method: :delete%>
+          </li>
+
+          <% elsif admin_signed_in? %>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to '商品一覧' %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to "会員一覧" %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to '注文履歴一覧' %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to 'ジャンル一覧' %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to " ログアウト", destroy_admin_session_path, method: :delete%>
+          </li>
+
+
+          <% else %>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to "商品一覧" %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to '新規登録', new_end_user_registration_path %>
+          </li>
+          <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
+            <%= link_to " ログイン", new_end_user_session_path %>
+          </li>
+          <% end %>
+        </ul>      
+     </div>
+    </nav>
+  </header>
+  <%= yield %>
+</body>
 </html>
