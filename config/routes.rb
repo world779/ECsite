@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  
-   
-  
   scope module: :public do
     devise_for :end_users, controllers:{
       sessions: 'end_users/sessions',
@@ -20,8 +17,5 @@ Rails.application.routes.draw do
   }
   get "admin/top" =>"admin#top", as: 'top_admin'
   namespace :admin do
-
   end
-
- 
 end
