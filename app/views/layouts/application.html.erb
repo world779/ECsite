@@ -18,6 +18,9 @@
         </div>
         <ul class="nav navbar-right navbar-nav" style="margin:20px 0px 10px 0px;">
           <% if end_user_signed_in? %>
+          <li style="padding:0; margin:30px;" >
+            ようこそ、<%= current_end_user.last_name %> <%= current_end_user.first_name %>さん！
+          </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to 'マイページ', current_end_user %>
           </li>
