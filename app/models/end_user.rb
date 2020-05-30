@@ -1,6 +1,10 @@
 class EndUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  def active_for_authentication?
+    super && (self.is_active==true)
+  end
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :first_name_kana, presence: true

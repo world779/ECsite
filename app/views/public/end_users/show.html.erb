@@ -1,7 +1,20 @@
-<div class="container">
-	<span style="background-color:#dcdcdc; margin-left:80px; font-size:25px;">マイページ</span><br><br>
+<%= render "public/end_users/nav_name" %>
 
-	<b style="font-size: 20px;">登録情報</b>
-	<%= link_to '編集する'%>
-	<%= link_to 'パスワードを変更する'%>
-</div>
+<span style="background-color:#dcdcdc; margin-left:30px; font-size:25px;">マイページ</span><br><br>
+
+<b style="font-size: 20px;">登録情報　</b>
+<%= link_to '編集する',"/mypage/edit", class:"btn btn-info" %>　
+<%= link_to 'パスワードを変更する', current_end_user,class:"btn btn-info"%>
+
+<table class="table table-bordered" style="margin:30px;">
+	<tr><td>氏名</td><td><%= current_end_user.last_name %>　<%= current_end_user.first_name %></td></tr>
+	<tr><td>カナ</td><td><%= current_end_user.last_name_kana %>　<%= current_end_user.first_name_kana %></td></tr>
+	<tr><td>郵便番号</td><td><%= current_end_user.postcode %></td></tr>
+	<tr><td>住所</td><td><%= current_end_user.address %></td></tr>
+	<tr><td>電話番号</td><td><%= current_end_user.phone_number %></td></tr>
+	<tr><td>メールアドレス</td><td><%= current_end_user.email %></td></tr>
+</table><br>
+<b>配送先</b>
+<%= link_to '一覧を見る' ,current_end_user, class:"btn btn-info", style:"margin-left:30px;" %><br><br>
+<b>注文履歴</b>
+<%= link_to '一覧を見る', current_end_user,class:"btn btn-info", style:"margin-left:15px;" %>

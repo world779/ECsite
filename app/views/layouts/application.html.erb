@@ -14,15 +14,19 @@
     <nav class="navbar navbar-light bg-inverse" style="background-color:#e6e6fa;">
       <div class="container-fluid">
         <div class="navbar-brand" style="margin:20px 0px 10px 0px;">
-          <div style="background-color:white; text-decoration: none; padding:15px 70px"><%= link_to 'LOGO', root_path%></div>
+
+ 
+          <div style="background-color:white; text-decoration: none; padding:15px 70px"><%= link_to 'LOGO', "#{yield :path}"%></div>
+
+
         </div>
         <ul class="nav navbar-right navbar-nav" style="margin:20px 0px 10px 0px;">
           <% if end_user_signed_in? %>
           <li style="padding:0; margin:30px;" >
-            ようこそ、<%= current_end_user.last_name %> <%= current_end_user.first_name %>さん！
+            <%= yield :title %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
-            <%= link_to 'マイページ', current_end_user %>
+            <%= link_to 'マイページ', end_user_path %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to "商品一覧" %>
@@ -39,7 +43,7 @@
             <%= link_to '商品一覧' %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
-            <%= link_to "会員一覧" %>
+            <%= link_to "会員一覧", admin_end_users_path %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to '注文履歴一覧' %>
@@ -67,6 +71,10 @@
      </div>
     </nav>
   </header>
+  <div class="container">
+  <%= flash[:error] %>
+  <br><br>
   <%= yield %>
+  </div>
 </body>
 </html>

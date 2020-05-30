@@ -1,0 +1,6 @@
+<% content_for :path do %>
+/mypage
+<% end %>
+<% content_for :title do %>
+ようこそ、<%= current_end_user.last_name %> <%= current_end_user.first_name %>さん！
+<% end %>

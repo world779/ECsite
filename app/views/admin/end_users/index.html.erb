@@ -1,0 +1,29 @@
+<% content_for :path do %>
+/admin/top
+<% end %>
+<span style="background-color:#dcdcdc; margin-left:30px; font-size:25px;">会員一覧</span>
+<table class="table" style="margin:30px;">
+	<thead class="thead-light">
+		<tr>
+			<th>会員</th>
+			<th>氏名</th>
+			<th>メールアドレス</th>
+			<th>ステータス</th>
+		</tr>
+	</thead>
+	
+	<% @end_users.each do |end_user| %>
+	<tbody>
+		<tr>
+			<td><%= end_user.id %></td>
+			<td><%= end_user.last_name %><%= end_user.first_name %></td>
+			<td><%= end_user.email %></td>
+			<% if end_user.is_active==true %>
+			<td>有効</td>
+			<% else %>
+			<td>退会済み</td>
+			<% end %>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
