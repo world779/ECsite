@@ -1,1 +1,13 @@
-商品一覧ページ
+<span style=" margin-left:30px; font-size:25px;">商品一覧 (全<%= @items.count %>件)</span><br><br>
+
+<div class="row">
+	<% @items.each do |item| %>
+		<% if item.is_sold==true %>
+			<div class="col-sm-3">
+				<%= attachment_image_tag item, :image, :fill, 40, 40, fallback: "no_image.jpg", size: "200x150" %><br>
+				<%= item.name %><br>
+				¥<%= item.price %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

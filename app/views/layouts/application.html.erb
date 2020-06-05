@@ -13,15 +13,12 @@
   <header>
     <nav class="navbar navbar-light bg-inverse" style="background-color:#e6e6fa;">
       <div class="container-fluid">
+        <% if end_user_signed_in? %>
         <div class="navbar-brand" style="margin:20px 0px 10px 0px;">
-
- 
-          <div style="background-color:white; text-decoration: none; padding:15px 70px"><%= link_to 'LOGO', "#{yield :path}"%></div>
-
-
+          <div style="background-color:white; text-decoration: none; padding:15px 70px"><%= link_to 'LOGO', "/mypage" %></div>
         </div>
         <ul class="nav navbar-right navbar-nav" style="margin:20px 0px 10px 0px;">
-          <% if end_user_signed_in? %>
+          
           <li style="padding:0; margin:30px;" >
             <%= yield :title %>
           </li>
@@ -29,7 +26,7 @@
             <%= link_to 'マイページ', end_user_path %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
-            <%= link_to "商品一覧" %>
+            <%= link_to "商品一覧", items_path %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to 'カート' %>
@@ -37,10 +34,15 @@
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to " ログアウト", destroy_end_user_session_path, method: :delete%>
           </li>
+        </ul>
 
           <% elsif admin_signed_in? %>
+          <div class="navbar-brand" style="margin:20px 0px 10px 0px;"> 
+            <div style="background-color:white; text-decoration: none; padding:15px 70px"><%= link_to 'LOGO', top_admin_path %></div>
+          </div>
+          <ul class="nav navbar-right navbar-nav" style="margin:20px 0px 10px 0px;">
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
-            <%= link_to '商品一覧' %>
+            <%= link_to '商品一覧',admin_items_path %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to "会員一覧", admin_end_users_path %>
@@ -49,16 +51,20 @@
             <%= link_to '注文履歴一覧' %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
-            <%= link_to 'ジャンル一覧' %>
+            <%= link_to 'ジャンル一覧', admin_genres_path %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to " ログアウト", destroy_admin_session_path, method: :delete%>
           </li>
-
+</ul>
 
           <% else %>
+          <div class="navbar-brand" style="margin:20px 0px 10px 0px;">
+          <div style="background-color:white; text-decoration: none; padding:15px 70px"><%= link_to 'LOGO', root_path %></div>
+        </div>
+          <ul class="nav navbar-right navbar-nav" style="margin:20px 0px 10px 0px;">
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
-            <%= link_to "商品一覧" %>
+            <%= link_to "商品一覧", items_path %>
           </li>
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to '新規登録', new_end_user_registration_path %>
@@ -66,8 +72,9 @@
           <li class="btn btn-default btn-sm" style="padding:0; margin:15px;" >
             <%= link_to " ログイン", new_end_user_session_path %>
           </li>
+          </ul>
           <% end %>
-        </ul>      
+              
      </div>
     </nav>
   </header>

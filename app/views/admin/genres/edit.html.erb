@@ -1,0 +1,17 @@
+<span style="background-color:#dcdcdc; margin-left:30px; font-size:25px;">ジャンル一覧・追加</span>
+
+<%= form_for(@genre, url: admin_genre_path(@genre)) do |f| %>
+	<% if @genre.errors.any? %>
+		<h3><%= @genre.errors.count %>error occurrence</h3><!--エラーメッセ-->
+		<ul>
+			<% @genre.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	<% end %><br><br>
+	 ジャンル
+	 <%= f.text_field :name %>　
+	 <%= f.radio_button :is_active, true %>有効
+	 <%= f.radio_button :is_active, false %>無効　
+	 <%= f.submit "変更を保存する", class:"btn btn-info"%>
+<% end %>
