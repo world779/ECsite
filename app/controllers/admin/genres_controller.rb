@@ -7,6 +7,9 @@ class Admin::GenresController < ApplicationController
 	def create
 		@genre=Genre.new(genre_params)
 		if @genre.save
+			if @genre.is_active==false
+				@genre.items.is_sold=false
+			end
 			redirect_to admin_genres_path
 		else
 			@genres=Genre.all

@@ -18,7 +18,7 @@
 		<div class="col-sm-7">
 			商品名　　　　　<%= f.text_field :name %><br><br>
 			商品説明　　　　<%= f.text_area :description %><br><br>
-			ジャンル　　　　<%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択してください" %><br><br>
+			ジャンル　　　　<%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択してください" %><br><br>
 			税抜価格　　　　<%= f.text_field :price %>円<br><br>
 			販売ステータス　<%= f.radio_button :is_sold, true %>販売中
  			<%= f.radio_button :is_sold, false %>販売停止中<br>

@@ -5,6 +5,7 @@ class Admin::ItemsController < ApplicationController
 	end
 	def new
 		@item=Item.new
+		@genres=Genre.where(is_active: true)
 	end
 	def create
 		@item=Item.new(item_params)

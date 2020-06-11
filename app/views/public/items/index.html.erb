@@ -1,11 +1,15 @@
-<span style=" margin-left:30px; font-size:25px;">商品一覧 (全<%= @items.count %>件)</span><br><br>
+<span style=" margin-left:30px; font-size:25px;">商品一覧</span>
+ <!-- (全<%= @items.count %>件) -->
+<br><br>
 
 <div class="row">
 	<% @items.each do |item| %>
-		<% if item.is_sold==true %>
+		<% if item.is_sold==true and item.genre.is_active==true%>
 			<div class="col-sm-3">
-				<%= attachment_image_tag item, :image, :fill, 40, 40, fallback: "no_image.jpg", size: "200x150" %><br>
-				<%= item.name %><br>
+				<%= link_to item_path(item) do %>
+					<%= attachment_image_tag item, :image, :fill, 40, 40, fallback: "no_image.jpg", size: "200x150" %><br>
+					<%= item.name %><br>
+				<% end %>
 				¥<%= item.price %>
 			</div>
 		<% end %>

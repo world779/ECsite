@@ -2,9 +2,10 @@ class Public::ItemsController < ApplicationController
 	def top
 	end
 	def index
-		@items = Item.all
+		@items = Item.where(is_sold: true)
 	end
 	def show
+		@item=Item.find(params[:id])
 	end
 
 	private
