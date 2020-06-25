@@ -7,5 +7,15 @@
 		<p style="font-size:30px;"><%= @item.name %></p><br>
 		<%= @item.description %><br>
 		<p style="font-size:20px;">¥<%= @item.price %>(税込)</p>
+
+		<%= form_for(@item, url:cart_items_path ,method: :post) do |f| %>
+			<%= f.fields_for :cart_items do |d| %>
+				<%= d.select :amount,(1..50) %>
+				<%= d.hidden_field :item_id, :value => @item.id %>
+			<% end %>
+			<%= f.submit "カートに入れる", class:"btn btn-info"%>
+		<% end %>
+
+
 	</div>
 </div>
